@@ -7,19 +7,27 @@
 using namespace std;
 
 #define MIN 0
-#define MAX 100
+#define MAX 10
 
 class Mocker {
     private:
         mt19937 rng;
-        
+
     public:
         Mocker() {
             rng.seed(random_device()());
         }
 
-        int generateRandomInt(int min = MIN, int max = MAX);
-        char generateRandomChar();
+        int generateRandomInt(int min = MIN, int max = MAX)
+        {
+          uniform_int_distribution<mt19937::result_type> distribution(min, max);
+          return distribution(rng);
+        };
+        char generateRandomChar()
+        {
+          int increment = generateRandomInt() % 26;
+          return 'a' + increment;
+        };
 
         template <typename T>
         T* generateRandomArray(unsigned int size) {
