@@ -130,6 +130,8 @@ public:
 
     }
 
+    // Tus operaciones son más lentas por usar directamente los operadores sobrecargados
+
     const Matrix<T> operator*(T scalar){
         auto r=this;
         Matrix<T> respuesta(rows,columns);
